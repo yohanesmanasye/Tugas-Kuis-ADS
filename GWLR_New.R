@@ -189,7 +189,7 @@ pvalx3
 pvalx4 = 2*pt(abs(res_adpbi$SDF$persentase_keluhan_kesehatan_TV),df=38,lower.tail = FALSE)
 pvalx4
 
-##=== EXPORT HASIL DALAM FORMAT XLSX
+##--- EXPORT HASIL DALAM FORMAT XLSX
 setwd("D:/All about Collage/Perkuliahan/Semester 6/Analisis Data Spasial/Tugas + Kuis")
 library(writexl)
 outputGWLR = data.frame(covidjatim$KabupatenKota,intercept,x1,x2,x3,x4,pvalx1,pvalx2,pvalx3,pvalx4)
