@@ -50,7 +50,8 @@ AIC(logisticreg)
 err.regklasik2<- residuals(logisticreg)
 
 # -----Normalitas-----
-ad.test(err.regklasik2)
+shapiro.test(err.regklasik2) #pake uji ini karena data <40
+
 hist(err.regklasik2)
 qqnorm(err.regklasik2,datax=T)
 qqline(rnorm(length(err.regklasik2),mean(err.regklasik2),sd(err.regklasik2)),datax=T, col="red")
@@ -177,13 +178,15 @@ x4 = res_adpbi$SDF$persentase_keluhan_kesehatan
 
 
 ##=== MENDAPATKAN NILAI PVALUE
-pvalx1 = 2*pt(abs(x1),df=38,lower.tail = FALSE) #ubah t-value menjadi p-value
+#TV --> T-Value
+
+pvalx1 = 2*pt(abs(res_adpbi$SDF$kepadatan_penduduk_TV),df=38,lower.tail = FALSE) #ubah t-value menjadi p-value
 pvalx1
-pvalx2 = 2*pt(abs(x2),df=38,lower.tail = FALSE)
+pvalx2 = 2*pt(abs(res_adpbi$SDF$jumlah_faskes_TV),df=38,lower.tail = FALSE)
 pvalx2
-pvalx3 = 2*pt(abs(x3),df=38,lower.tail = FALSE)
+pvalx3 = 2*pt(abs(res_adpbi$SDF$jumlah_miskin_TV),df=38,lower.tail = FALSE)
 pvalx3
-pvalx4 = 2*pt(abs(x3),df=38,lower.tail = FALSE)
+pvalx4 = 2*pt(abs(res_adpbi$SDF$persentase_keluhan_kesehatan_TV),df=38,lower.tail = FALSE)
 pvalx4
 
 ##=== EXPORT HASIL DALAM FORMAT XLSX
@@ -191,8 +194,3 @@ setwd("D:/All about Collage/Perkuliahan/Semester 6/Analisis Data Spasial/Tugas +
 library(writexl)
 outputGWLR = data.frame(covidjatim$KabupatenKota,intercept,x1,x2,x3,x4,pvalx1,pvalx2,pvalx3,pvalx4)
 writexl::write_xlsx(outputGWLR,"outputGWLR.xlsx")
-
-
-
-
-
